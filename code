@@ -1,0 +1,32 @@
+class Solution{
+  public:
+    int minOperations(int arr[], int n, int k) {
+        //step 1----made a min heap
+        priority_queue<int,vector<int>,greater<int>>minheap;
+        //step2-- inserted value in min heap
+        for(int i=0;i<n;i++){
+            minheap.push(arr[i]);
+        }
+        
+        int ans=0;
+        while(minheap.top()<k){
+            int a=minheap.top();
+            minheap.pop();
+            if(!minheap.empty())
+            {
+            int b=minheap.top();
+            minheap.pop();
+            int sum=a+b;
+            minheap.push(sum);
+            //ans is the number of operations done
+            ans++;
+            }
+            //in else if minheap is null noting can be done so return -1
+            else{
+                return -1;
+            }
+            
+        }
+        return ans;
+    }
+};
